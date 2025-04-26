@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.bartkk.betterflags.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "ScreenContainerAbstractMixin",
+    "ScreenFlagEditorMixin",
+    "TooltipElementMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

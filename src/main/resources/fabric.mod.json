@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "betterflags",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Better flags",
+  "description": "Adds QOL things to flags.",
   "authors": [
-    "Turnip Labs"
+    "Bartkk"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://bartkk.xyz",
+    "sources": "https://github.com/Bartkk0/bta-better-flags"
   },
 
 	"icon": "icon.png",
@@ -19,22 +19,19 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-			"turniplabs.examplemod.ExampleMod"
+			"xyz.bartkk.betterflags.BetterFlags"
     ],
 		"beforeGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+			"xyz.bartkk.betterflags.BetterFlags"
 		],
 		"afterGameStart": [
-			"turniplabs.examplemod.ExampleMod"
-		],
-		"recipesReady": [
-			"turniplabs.examplemod.ExampleMod"
+			"xyz.bartkk.betterflags.BetterFlags"
 		]
 	},
   "mixins": [
-      "examplemod.mixins.json"
+      "betterflags.mixins.json"
   ],
-
+	"accessWidener": "betterflags.accesswidener",
   "depends": {
 		"minecraft": "*",
     "fabricloader": ">=0.15.5"
