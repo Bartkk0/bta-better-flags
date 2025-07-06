@@ -61,27 +61,34 @@ public abstract class ScreenFlagEditorMixin extends ScreenContainerAbstract {
 			"betterflags:gui/arrow_down_highlighted",
 			"betterflags:gui/arrow_down_disabled"));
 
-
 		this.buttons.add(new ButtonElement(205,
 			x + 6,
-			y + 46,
+			y + 62,
 			36,
 			12,
 			I18n.getInstance().translateKey("toast.betterflags.clear")));
 
 		this.buttons.add(new ButtonElement(206,
 			x + 6,
-			y + 46 + 16,
+			y + 62 + 16,
 			36,
 			12,
 			I18n.getInstance().translateKey("toast.betterflags.copy")));
 
 		this.buttons.add(new ButtonElement(207,
 			x + 6,
-			y + 46 + 16 + 4 + 12,
+			y + 62 + 16 + 4 + 12,
 			36,
 			12,
 			I18n.getInstance().translateKey("toast.betterflags.paste")));
+
+		this.buttons.add(new ButtonElement(208, x + 6, y + 46, 12, 12, "").setTextures("betterflags:gui/horizontal_flip",
+			"betterflags:gui/horizontal_flip_highlighted",
+			"betterflags:gui/horizontal_flip_disabled"));
+
+		this.buttons.add(new ButtonElement(209, x + 30, y + 46, 12, 12, "").setTextures("betterflags:gui/vertical_flip",
+			"betterflags:gui/vertical_flip_highlighted",
+			"betterflags:gui/vertical_flip_disabled"));
 	}
 
 	@Inject(method = "drawGuiContainerBackgroundLayer", at = @At("TAIL"))
@@ -89,7 +96,7 @@ public abstract class ScreenFlagEditorMixin extends ScreenContainerAbstract {
 		this.mc.textureManager.loadTexture("/assets/betterflags/textures/gui/container/flag_editor_extras.png").bind();
 		int j = (this.width - this.xSize) / 2 + this.xSize + 8;
 		int k = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(j, k, 0, 0, 48, 100, 1, 1f);
+		this.drawTexturedModalRect(j, k, 0, 0, 48, 112, 1, 1f);
 	}
 
 	@Inject(method = "buttonClicked", at = @At("TAIL"))
@@ -154,6 +161,10 @@ public abstract class ScreenFlagEditorMixin extends ScreenContainerAbstract {
 
 			System.arraycopy(unpacked, 0, flagSurface.surfaceData, 0, unpacked.length);
 			flagEntity.isDirty = true;
+		} else if(button.id == 208) { // Horizontal flip
+			horizontalFlip();
+		} else if(button.id == 209) { // Vertical flip
+			verticalFlip();
 		}
 	}
 
@@ -175,6 +186,54 @@ public abstract class ScreenFlagEditorMixin extends ScreenContainerAbstract {
 			for (int j = 0; j < width; j++) {
 				int y = i - offsetY;
 				int x = j + offsetX;
+
+				flagSurface.setPixelValue(x, y, data[i * width + j]);
+			}
+		}
+	}
+
+	@Unique
+	private void horizontalFlip() {
+		flagEntity.isDirty = true;
+		int width = flagSurface.getWidth();
+		int height = flagSurface.getHeight();
+
+		byte[] data = new byte[width * height];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				data[i * width + j] = flagSurface.getPixelValue(j, i);
+				flagSurface.setPixelValue(j, i, (byte) 0);
+			}
+		}
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int y = i;
+				int x = width - j - 1;
+
+				flagSurface.setPixelValue(x, y, data[i * width + j]);
+			}
+		}
+	}
+
+	@Unique
+	private void verticalFlip() {
+		flagEntity.isDirty = true;
+		int width = flagSurface.getWidth();
+		int height = flagSurface.getHeight();
+
+		byte[] data = new byte[width * height];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				data[i * width + j] = flagSurface.getPixelValue(j, i);
+				flagSurface.setPixelValue(j, i, (byte) 0);
+			}
+		}
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int y = height - i - 1;
+				int x = j;
 
 				flagSurface.setPixelValue(x, y, data[i * width + j]);
 			}
