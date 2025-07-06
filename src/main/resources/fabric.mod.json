@@ -1,41 +1,38 @@
 {
-  "schemaVersion": 1,
-  "id": "betterflags",
-  "version": "${version}",
-
-  "name": "Better flags",
-  "description": "Adds QOL things to flags.",
-  "authors": [
-    "Bartkk"
-  ],
-  "contact": {
-    "homepage": "https://bartkk.xyz",
-    "sources": "https://github.com/Bartkk0/bta-better-flags"
-  },
-
+	"schemaVersion": 1,
+	"id": "betterflags",
+	"version": "${version}",
+	"name": "BTA Better flags",
+	"description": "Adds QOL features to the flag editor.",
+	"authors": [
+		"Bartkk"
+	],
+	"contact": {
+		"homepage": "https://bartkk.xyz",
+		"sources": "https://github.com/Bartkk0/bta-better-flags"
+	},
 	"icon": "icon.png",
-  "license": "CC0-1.0",
-
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-			"xyz.bartkk.betterflags.BetterFlags"
-    ],
-		"beforeGameStart": [
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
 			"xyz.bartkk.betterflags.BetterFlags"
 		],
-		"afterGameStart": [
+		"beforeClientStart": [
+			"xyz.bartkk.betterflags.BetterFlags"
+		],
+		"afterClientStart": [
 			"xyz.bartkk.betterflags.BetterFlags"
 		]
 	},
-  "mixins": [
-      "betterflags.mixins.json"
-  ],
+	"mixins": [
+		"betterflags.mixins.json"
+	],
 	"accessWidener": "betterflags.accesswidener",
-  "depends": {
+	"depends": {
 		"minecraft": "*",
-    "fabricloader": ">=0.15.5"
-  },
-  "suggests": {
-  }
+		"fabricloader": ">=0.15.5"
+	},
+	"suggests": {
+	}
 }
