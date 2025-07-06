@@ -140,6 +140,10 @@ jar {
 	}
 }
 
+tasks.remapJar {
+	archiveFileName.set("${project.name}-${project.version}+bta${bta_version}.jar")
+}
+
 configurations.configureEach {
 	// Removes LWJGL2 dependencies
 	exclude group: "org.lwjgl.lwjgl"
