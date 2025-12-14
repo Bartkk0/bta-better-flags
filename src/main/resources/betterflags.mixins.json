@@ -8,7 +8,6 @@
   "client": [
     "ScreenContainerAbstractMixin",
     "ScreenFlagEditorMixin",
-    "TextureRegistryMixin",
     "TooltipElementMixin"
   ],
   "injectors": {
