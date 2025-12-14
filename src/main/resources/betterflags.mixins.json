@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "xyz.bartkk.betterflags.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_${java}",
   "mixins": [
   ],
   "client": [
